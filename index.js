@@ -13,8 +13,17 @@ app.use("/home", homeRouter.router);
 app.use("/about", aboutRouter.router);
 app.use("/login", loginRouter.router);
 
+process.env.PORT
 
-let PORT = 5500;
+let PORT = null;
+
+if(!process.env.PORT){
+    PORT = 5500;
+    console.log(`Setting custom port: ${PORT}`)
+} else {
+    PORT = process.env.PORT;
+    console.log(`Setting default port: ${PORT}`)
+}
 
 app.listen(PORT, ()=>{
     console.log("Starting application: ")
